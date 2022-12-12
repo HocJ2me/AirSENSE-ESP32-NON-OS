@@ -12,7 +12,7 @@
 #ifndef CONFIGS_H
 #define CONFIGS_H
 
-#define NAME_DEVICE "AirSENSE_RTOS"
+#define NAME_DEVICE "AirSENSE-NonOS-1"
 
 #define SERIAL_DEBUG_BAUDRATE   (9600)
 

@@ -32,12 +32,12 @@ ERROR_CODE MQTT_initClient( char*			 		_topic,
 		ESP_LOGI("ID: %s.", _espID);
 		_mqttClient.subscribe(_topic);
 		_connectionStatus->mqttConnection = status_et::CONNECTED;
-		ESP_LOGI("MQTT initialized successfully!");
+		ESP_LOGD("MQTT initialized successfully!");
 		return ERROR_NONE;
 	} else {
-		ESP_LOGI("MQTT initialized failed!");
+		ESP_LOGE("MQTT initialized failed!");
 		_connectionStatus->mqttConnection = status_et::DISCONNECTED;
-		ESP_LOGI("MQTT initialized failed!");
+		ESP_LOGE("MQTT initialized failed!");
 		return ERROR_MQTT_INIT_FAILED;
 	}
 }

@@ -53,7 +53,7 @@ ERROR_CODE pms_init()
     // {  
         Serial2.begin(9600);
         pmsSensor.init(&Serial2);
-        ESP_LOGI("PMS7003 Sensor initialize successfully!");
+        ESP_LOGD("PMS7003 Sensor initialize successfully!");
         return ERROR_NONE;
     // } else {
         // ESP_LOGI("Hardware serial not available.\r\nPMS7003 Sensor initialize failed!");

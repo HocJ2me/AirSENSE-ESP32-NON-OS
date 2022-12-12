@@ -56,7 +56,7 @@ void setup() {
 #ifdef USING_SDCARD
 	SDcard_init(PIN_NUM_CLK, PIN_NUM_MISO, PIN_NUM_MOSI, PIN_CS_SD_CARD, &connectionStatus_st);
 #endif
-    ESP_LOGI("Init Done");
+    ESP_LOGD("Init Done");
 }
 unsigned long last_send = 0;
 void loop() {

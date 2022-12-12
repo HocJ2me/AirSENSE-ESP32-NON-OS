@@ -53,11 +53,11 @@ ERROR_CODE bme_initialize(TwoWire &_wire)
 
     if (bmeSensor.begin())
     {
-        ESP_LOGI("BME280 Sensor initialize successfully!");
+        ESP_LOGD("BME280 Sensor initialize successfully!");
         // connectionStatus_st.bmeSensor = status_et::CONNECTED;
         return ERROR_NONE;
     } else {
-        ESP_LOGI("BME280 Sensor initialize failed!");
+        ESP_LOGE("BME280 Sensor initialize failed!");
         // connectionStatus_st.bmeSensor = status_et::DISCONNECTED;
         return ERROR_BME_INIT_FAILED;
     }

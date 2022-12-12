@@ -13,13 +13,13 @@ ERROR_CODE SDcard_init(uint8_t _pinSCK,
 	if (SD.begin(_pinCS))
 	{
 		_connectionStatus->sdCardStatus = status_et::CONNECTED;
-		ESP_LOGI("SD init success.");
+		ESP_LOGD("SD init success.");
 		return ERROR_NONE;
 	}
 	else
 	{
 		_connectionStatus->sdCardStatus = status_et::DISCONNECTED;
-		ESP_LOGI("SD init false.");
+		ESP_LOGE("SD init false.");
 		return ERROR_SD_CARD_INIT_FAILED;		
 	}
 }
@@ -113,13 +113,13 @@ ERROR_CODE SDcard_saveStringDataToFile( struct connectionStatus *_connectStatus,
 		}
 		else
 		{
-			ESP_LOGI("Can't open file to write!");
-			ESP_LOGI("SD card write sensor data to file failed!");
+			ESP_LOGE("Can't open file to write!");
+			ESP_LOGE("SD card write sensor data to file failed!");
 			return ERROR_SD_CARD_FILE_NOT_FOUND;
 		}
 	} else {
-		ESP_LOGI("SD card disconnected!");
-		ESP_LOGI("SD card write data failed!");
+		ESP_LOGE("SD card disconnected!");
+		ESP_LOGE("SD card write data failed!");
 		return ERROR_SD_CARD_READ_FILE_FAILED;
 	}
 }
