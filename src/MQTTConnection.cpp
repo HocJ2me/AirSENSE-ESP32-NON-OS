@@ -15,7 +15,7 @@ ERROR_CODE MQTT_initClient( char*			 		_topic,
 	sprintf(_topic, "/V3/%x%x%x%x/", espMacAddress[0],  espMacAddress[1],  espMacAddress[2],  espMacAddress[3]);
 	sprintf(_espID, "%x%x%x%x", espMacAddress[0],  espMacAddress[1],  espMacAddress[2],  espMacAddress[3]);
 	
-	log_e("%s",_espID);
+	ESP_LOGI("%s",_espID);
 	_mqttClient.setKeepAlive(KEEP_ALIVE_PERIOD);
 	_mqttClient.setServer(MQTT_SERVER_IP_ADDRESS, MQTT_SERVER_PORT);		// cai dat server voi dia chi ip va port
 
@@ -28,16 +28,16 @@ ERROR_CODE MQTT_initClient( char*			 		_topic,
 
 	if(_mqttClient.connect(_espID,MQTT_USER,MQTT_PASSWORD))
 	{
-		log_e("Topic: %s.", _topic);
-		log_e("ID: %s.", _espID);
+		ESP_LOGI("Topic: %s.", _topic);
+		ESP_LOGI("ID: %s.", _espID);
 		_mqttClient.subscribe(_topic);
 		_connectionStatus->mqttConnection = status_et::CONNECTED;
-		log_e("MQTT initialized successfully!");
+		ESP_LOGI("MQTT initialized successfully!");
 		return ERROR_NONE;
 	} else {
-		log_e("MQTT initialized failed!");
+		ESP_LOGI("MQTT initialized failed!");
 		_connectionStatus->mqttConnection = status_et::DISCONNECTED;
-		log_e("MQTT initialized failed!");
+		ESP_LOGI("MQTT initialized failed!");
 		return ERROR_MQTT_INIT_FAILED;
 	}
 }
@@ -48,7 +48,7 @@ ERROR_CODE MQTT_postData(const char *_message,
 					     PubSubClient&  			_mqttClient)
 {
 	
-    log_e("%s",_message);
+    ESP_LOGI("%s",_message);
 	if (_connectionStatus->wifiStatus == status_et::CONNECTED)
 	{
 		if (_mqttClient.connected())
@@ -57,24 +57,24 @@ ERROR_CODE MQTT_postData(const char *_message,
 
 			if (_mqttClient.publish(topic, _message, true))	// kiem tra co gui dulieu len MQTT thanh cong
 			{
-				log_e("%s.", _message);
+				ESP_LOGI("%s.", _message);
 				_connectionStatus->mqttConnection = status_et::CONNECTED;
 				_mqttClient.loop();
-				log_e("MQTT send data successfully!");
+				ESP_LOGI("MQTT send data successfully!");
 				return ERROR_NONE;
 			} else {
 				_connectionStatus->mqttConnection = status_et::DISCONNECTED;
-				log_e("MQTT post data failed!");
+				ESP_LOGI("MQTT post data failed!");
 				return ERROR_MQTT_POST_DATA_FAILED;
 			}
 
 		} else {
 			_connectionStatus->mqttConnection = status_et::DISCONNECTED;
-			log_e("MQTT post data failed!");
+			ESP_LOGI("MQTT post data failed!");
 			return ERROR_MQTT_POST_DATA_FAILED;
 		}
 	} else {
-		log_e("WIFI  disconnected. MQTT post data failed!");
+		ESP_LOGI("WIFI  disconnected. MQTT post data failed!");
 		return ERROR_MQTT_POST_DATA_FAILED;
 	}
 }

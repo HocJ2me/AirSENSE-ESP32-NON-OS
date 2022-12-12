@@ -19,9 +19,6 @@
 #include "MQTTConnection.h"
 #include "SDCardDriver.h"
 #include "ButtonDriver.h"
-// #include "BMESensor.h"
-// #include "PMS7003Sensor.h"
-// #include "MHZ19BSensor.h"
 
 
 #define DEVICE_CONNECTED                ERROR_NONE

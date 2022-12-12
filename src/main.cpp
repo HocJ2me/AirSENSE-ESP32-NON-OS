@@ -42,7 +42,7 @@ void device_dataManagement()
 void setup() {
     Serial.begin(SERIAL_DEBUG_BAUDRATE);
     Serial2.begin(SERIAL_DEBUG_BAUDRATE);
-    log_e("Booting...");
+    ESP_LOGD("Booting...");
     WIFI_init();
     Wire.begin(PIN_SDA_GPIO, PIN_SCL_GPIO, I2C_CLOCK_SPEED);
     bme_initialize(Wire);
@@ -56,13 +56,12 @@ void setup() {
 #ifdef USING_SDCARD
 	SDcard_init(PIN_NUM_CLK, PIN_NUM_MISO, PIN_NUM_MOSI, PIN_CS_SD_CARD, &connectionStatus_st);
 #endif
-    log_e("Init Done");
+    ESP_LOGI("Init Done");
 }
 unsigned long last_send = 0;
 void loop() {
   // put your main code here, to run repeatedly:
   device_getData();
-  // delay(2000);
   if(millis() - last_send > 5000) 
   {
     device_dataManagement();

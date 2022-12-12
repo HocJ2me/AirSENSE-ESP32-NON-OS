@@ -19,7 +19,8 @@
 #include <NTPClient.h>
 #include <RTClib.h>
 #include "BME280I2C.h"
-
+#include "Plantower_PMS7003.h"
+#include <ErriezMHZ19B.h>
 
 extern const char *NAME, *prompt;
 extern struct sensorData sensorData_st;
@@ -45,6 +46,9 @@ extern struct calibData calibData_st;
 extern struct connectionStatus connectionStatus_st;
 
 extern BME280I2C bmeSensor;
+extern Plantower_PMS7003 pmsSensor;
+extern ErriezMHZ19B mhz19b;
+
 
 extern WiFiUDP ntpUDP;
 extern WiFiClient espClient;

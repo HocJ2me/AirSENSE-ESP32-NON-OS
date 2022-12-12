@@ -44,8 +44,8 @@ struct connectionStatus
 //========================== DEFINE FOR WIFI ========================
 
 #define USING_WIFI_CONFIG
-const char ssid[] = "Active Learn";
-const char pass[]  = "DeepLearning";
+const char ssid[] = "BK Star";
+const char pass[]  = "bkstar2021";
 
 //========================== DEFINE FOR LOGGING ========================
 

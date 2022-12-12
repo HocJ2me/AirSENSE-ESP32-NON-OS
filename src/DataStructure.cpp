@@ -12,12 +12,12 @@ ERROR_CODE creatCalibDataString(char *_calibDataString, struct calibData _calibD
 							  _calibData.humidity_calibFloat_u32 );
 	if (_calibDataString[0] == '\0')
 	{
-		log_e("Create string failed!");
+		ESP_LOGI("Create string failed!");
 		return ERROR_DATA_CREATE_STRINGDATA_FAILED;
 	} else {    
-        log_e("%s",_calibDataString);
+        ESP_LOGI("%s",_calibDataString);
 
-		log_e("Create string complete!");
+		ESP_LOGI("Create string complete!");
 		return ERROR_NONE;
 	}
 }
@@ -42,10 +42,10 @@ ERROR_CODE createSensorDataString(char *_sensorDataString,
     
 	if (_sensorDataString[0] == '\0')
 	{
-		log_e("Create string failed!");
+		ESP_LOGI("Create string failed!");
 		return ERROR_DATA_CREATE_STRINGDATA_FAILED;
 	} else {
-		log_e("Create string complete!");
+		ESP_LOGI("Create string complete!");
 		return ERROR_NONE;
 	}
 }

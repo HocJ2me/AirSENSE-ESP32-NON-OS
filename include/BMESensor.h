@@ -14,12 +14,12 @@
 
 #include <Wire.h>
 #include "esp_log.h"
-// #include "globals.h"
 #include "BME280I2C.h"
 #include "configs.h"
 
 #define ERROR_BME_INIT_FAILED       0xd0
 #define ERROR_BME_DET_DATA_FAILED   0xd1
+
 BME280I2C bmeSensor;
 
 /**
@@ -53,11 +53,11 @@ ERROR_CODE bme_initialize(TwoWire &_wire)
 
     if (bmeSensor.begin())
     {
-        log_e("BME280 Sensor initialize successfully!");
+        ESP_LOGI("BME280 Sensor initialize successfully!");
         // connectionStatus_st.bmeSensor = status_et::CONNECTED;
         return ERROR_NONE;
     } else {
-        log_e("BME280 Sensor initialize failed!");
+        ESP_LOGI("BME280 Sensor initialize failed!");
         // connectionStatus_st.bmeSensor = status_et::DISCONNECTED;
         return ERROR_BME_INIT_FAILED;
     }
@@ -73,10 +73,10 @@ ERROR_CODE bme_readData(float &_temperature, float &_humidity, float &_pressure)
     _humidity = (_humidity == NAN) ? -1 : _humidity;
     if (_pressure == -1 || _temperature == -273 || _humidity == -1)
     {
-        log_e("BME280 Sensor get data failed!");
+        ESP_LOGI("BME280 Sensor get data failed!");
         return ERROR_BME_DET_DATA_FAILED;
     } else {
-        // log_e("BME280 Sensor get data successsfully!");
+        // ESP_LOGI("BME280 Sensor get data successsfully!");
         return ERROR_NONE;
     }
 };
